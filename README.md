@@ -1,13 +1,38 @@
-# GitHub Codespaces ♥️ Flask
+## Slot Machine Feature
 
-Welcome to your shiny new Codespace running Flask! We've got everything fired up and running for you to explore Flask.
+### Endpoint: `/slots/bet`
+- **Method**: POST
+- **Parameters**:
+  - `bet` (string): The amount to bet. Use `m` for max and `a` for all-in.
+- **Response**:
+  - `spin_result` (array): The symbols from the slot machine spin.
+  - `payout` (number): The payout based on the spin result.
+  - `message` (string): A message summarizing the spin result.
+- **Example**:
+  ```json
+  {
+      "spin_result": ["7️⃣", "💎", "🍒"],
+      "payout": 25.0,
+      "message": "You won 25.0 credits!"
+  }
+  ```
 
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with the what you're seeing right now - where you go from here is up to you!
+### Endpoint: `/slots/reset`
+- **Method**: POST
+- **Response**:
+  - `message` (string): Confirmation that the game has been reset.
+- **Example**:
+  ```json
+  {
+      "message": "Game has been reset."
+  }
+  ```
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
+### How to Play
+1. Select your bet amount from the dropdown menu (`m` for max, `a` for all-in).
+2. Click "Spin" to spin the slot machine.
+3. View the spin result, payout, and message below the buttons.
+4. Click "Reset Game" to reset the game state and start fresh.
 
-To run this application:
-
-```
-flask --debug run
-```
+### Payout Logic
+The best odds match will be selected. For example, if you get 3 bells and 2 bars, the payout will be for 2 bars.
